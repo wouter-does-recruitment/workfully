@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Webfleet | Recruitment Update | Growth Marketeer Benelux</title>
+<style>
+  :root{
+    --wf-red:#ED1C24;
+    --wf-blue:#2470B8;
+    --ink:#15263A;
+    --muted:#637083;
+    --bg:#F5F7FA;
+    --card:#FFFFFF;
+    --line:#E4EAF0;
+    --soft-blue:#EAF3FB;
+    --soft-red:#FDECEE;
+    --good:#1F8A5B;
+    --soft-good:#EAF7F1;
+    --amber:#B87900;
+    --soft-amber:#FFF6DF;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    line-height:1.45;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:34px 28px 60px}
+  .topbar{
+    display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
+    background:linear-gradient(120deg,#ffffff 0%,#ffffff 70%,#f7fbff 100%);
+    border:1px solid var(--line); border-radius:18px; padding:26px 28px;
+    box-shadow:0 8px 26px rgba(24,51,82,.05);
+    position:relative; overflow:hidden;
+  }
+  .topbar:before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:7px; background:var(--wf-red);
+  }
+  .brand{font-weight:800;letter-spacing:.05em;color:var(--wf-blue);font-size:14px;text-transform:uppercase}
+  h1{font-size:30px;line-height:1.15;margin:7px 0 8px}
+  .subtitle{color:var(--muted);font-size:15px}
+  .datebox{text-align:right;min-width:220px}
+  .datebox .date{font-weight:800;font-size:18px}
+  .tag{
+    display:inline-block;margin-top:10px;padding:7px 11px;border-radius:999px;
+    background:var(--soft-blue);color:var(--wf-blue);font-weight:700;font-size:12px
+  }
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0}
+  .kpi{
+    background:var(--card);border:1px solid var(--line);border-radius:15px;padding:20px;
+    box-shadow:0 5px 18px rgba(24,51,82,.035)
+  }
+  .kpi .num{font-size:32px;font-weight:850;line-height:1;color:var(--wf-blue)}
+  .kpi .label{font-weight:700;margin-top:8px}
+  .kpi .small{font-size:12px;color:var(--muted);margin-top:4px}
+  .kpi.red .num{color:var(--wf-red)}
+  .kpi.good .num{color:var(--good)}
+
+  .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:23px 24px;
+    box-shadow:0 5px 18px rgba(24,51,82,.035)
+  }
+  .card h2{font-size:18px;margin:0 0 15px}
+  .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-bottom:6px}
+  ul{margin:0;padding-left:19px}
+  li{margin:7px 0}
+  .criteria{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .pill{
+    border:1px solid var(--line);border-radius:11px;padding:10px 11px;
+    font-size:13px;font-weight:650;background:#FBFCFD
+  }
+  .pill::before{content:"✓";color:var(--good);font-weight:900;margin-right:8px}
+  .note{
+    border-left:4px solid var(--wf-blue);padding:11px 14px;background:var(--soft-blue);
+    border-radius:0 10px 10px 0;font-size:13px;margin-top:14px
+  }
+
+  .candidate{
+    border:1px solid var(--line);border-radius:13px;padding:15px 16px;margin-top:11px
+  }
+  .candidate:first-of-type{margin-top:0}
+  .cand-head{display:flex;justify-content:space-between;gap:14px;align-items:center}
+  .cand-name{font-weight:800}
+  .score{font-size:11px;font-weight:800;padding:5px 8px;border-radius:999px;background:var(--soft-good);color:var(--good)}
+  .cand-meta{font-size:12px;color:var(--muted);margin-top:3px}
+  .cand-text{font-size:13px;margin-top:8px}
+  .status{
+    display:inline-block;margin-top:9px;padding:5px 8px;border-radius:7px;
+    background:var(--soft-red);color:#A8171D;font-size:11px;font-weight:800
+  }
+
+  .targets{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+  .target{
+    padding:10px 11px;border-radius:10px;border:1px solid var(--line);font-size:13px;background:#fff
+  }
+  .target strong{display:block}
+  .target span{font-size:11px;color:var(--muted)}
+
+  .progress-row{margin:14px 0 0}
+  .progress-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:6px}
+  .bar{height:9px;background:#EAF0F5;border-radius:999px;overflow:hidden}
+  .fill{height:100%;background:var(--wf-blue);border-radius:999px}
+  .fill.red{background:var(--wf-red)}
+  .fill.good{background:var(--good)}
+
+  .bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+  .talking{counter-reset:item;list-style:none;padding:0}
+  .talking li{position:relative;padding-left:34px;margin:13px 0}
+  .talking li:before{
+    counter-increment:item;content:counter(item);
+    position:absolute;left:0;top:-1px;width:23px;height:23px;border-radius:50%;
+    background:var(--wf-blue);color:white;display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800
+  }
+  .footer{
+    color:var(--muted);font-size:11px;margin-top:18px;text-align:right
+  }
+  .accent{color:var(--wf-red);font-weight:800}
+  @media(max-width:850px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .grid,.bottom{grid-template-columns:1fr}
+    .datebox{text-align:left}
+    .topbar{flex-direction:column}
+  }
+  @media print{
+    body{background:white}
+    .wrap{max-width:none;padding:12mm}
+    .topbar,.card,.kpi{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="topbar">
+    <div>
+      <div class="brand">WEBFLEET × DOES RECRUITMENT</div>
+      <h1>Recruitment Update <span class="accent">Growth Marketeer Benelux</span></h1>
+      <div class="subtitle">Week 1 recruitment update for Henrique · first sourcing wave completed, outreach generating responses</div>
+    </div>
+    <div class="datebox">
+      <div class="date">Monday 7 September 2026</div>
+      <div class="subtitle">Week 1 update</div>
+      <div class="tag">Quality over quantity</div>
+    </div>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi">
+      <div class="num">26</div>
+      <div class="label">targeted profiles</div>
+      <div class="small">first sourcing / market map</div>
+    </div>
+    <div class="kpi red">
+      <div class="num">23</div>
+      <div class="label">LinkedIn invites sent</div>
+      <div class="small">first LinkedIn outreach wave</div>
+    </div>
+    <div class="kpi good">
+      <div class="num">4</div>
+      <div class="label">replies so far</div>
+      <div class="small">33% reply rate on 12 messages sent</div>
+    </div>
+    <div class="kpi">
+      <div class="num">3</div>
+      <div class="label">candidate conversations</div>
+      <div class="small">Dyantha screened · Lara & Jari to speak</div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="eyebrow">Search calibration</div>
+      <h2>Current search criteria</h2>
+      <div class="criteria">
+        <div class="pill">Native / fluent Dutch</div>
+        <div class="pill">5+ years B2B marketing</div>
+        <div class="pill">Hands-on individual contributor</div>
+        <div class="pill">Demand generation / growth</div>
+        <div class="pill">End-to-end campaign execution</div>
+        <div class="pill">Strong Sales collaboration</div>
+        <div class="pill">Amsterdam · 2 days in office</div>
+        <div class="pill">Package within range</div>
+      </div>
+      <div class="note"><strong>Key calibration:</strong> not a pure people manager or strategy-only marketer. The sweet spot is someone who still builds and executes campaigns, while being senior enough to own the Benelux market.</div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Outreach performance</div>
+      <h2>LinkedIn outreach stats so far</h2>
+      <ul>
+        <li><strong>23</strong> connection invites sent.</li>
+        <li><strong>9</strong> accepted so far — <strong>39%</strong> acceptance rate.</li>
+        <li><strong>12</strong> messages sent and <strong>4</strong> replies — <strong>33%</strong> reply rate on messages sent.</li>
+        <li><strong>2 positive responses</strong> already: Lara Coebergh and Jari Boer both want to speak for more details.</li>
+        <li>Kyra Dankers is focused on roles in The Hague; Xander Wegscheider is focused on his own project.</li>
+<li>Sebastiaan Reinders liked the role, but declined because he does not want to work in Amsterdam.</li>
+      </ul>
+      <div class="progress-row">
+        <div class="progress-label"><span>Invite acceptance</span><span>9 / 23 · 39%</span></div>
+        <div class="bar"><div class="fill" style="width:39%"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label"><span>Reply rate on messages</span><span>4 / 12 · 33%</span></div>
+        <div class="bar"><div class="fill good" style="width:33%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="eyebrow">Candidate pipeline</div>
+      <h2>Active conversations</h2>
+
+      <div class="candidate">
+        <div class="cand-head">
+          <div>
+            <div class="cand-name">Dyantha Vriens</div>
+            <div class="cand-meta">B2B Marketing Manager · 10 years experience · Randstad</div>
+          </div>
+          <div class="score">Strong paper fit</div>
+        </div>
+        <div class="cand-text">B2B growth & demand gen, Benelux campaigns, ABM, Salesforce, pipeline collaboration with Sales and relevant SaaS / cybersecurity experience.</div>
+        <div class="status">Screening · Monday 11:00</div>
+      </div>
+
+      <div class="candidate">
+        <div class="cand-head">
+          <div>
+            <div class="cand-name">Lara Coebergh</div>
+            <div class="cand-meta">Growth background · SaaS / scale-up exposure</div>
+          </div>
+          <div class="score">Interested</div>
+        </div>
+        <div class="cand-text">Replied positively and would like a call to hear more details about the role.</div>
+        <div class="status">Call to schedule</div>
+      </div>
+
+      <div class="candidate">
+        <div class="cand-head">
+          <div>
+            <div class="cand-name">Jari Boer</div>
+            <div class="cand-meta">B2B growth · demand generation · Dapper / Exact</div>
+          </div>
+          <div class="score">Interested</div>
+        </div>
+        <div class="cand-text">Replied positively and would like a call to hear more details about the role.</div>
+        <div class="status">Call to schedule</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Priority outreach</div>
+      <h2>Priority profiles to follow up</h2>
+      <div class="targets">
+        <div class="target"><strong>Sebastiaan Reinders</strong><span>Role interest confirmed · declined on Amsterdam location</span></div>
+        <div class="target"><strong>Pauline Lubbe</strong><span>Senior Demand Marketing · Unmuted</span></div>
+        <div class="target"><strong>Yvonne van Driel</strong><span>Demand Manager · Dapper</span></div>
+        <div class="target"><strong>Lara Coebergh</strong><span>Interested · call to schedule</span></div>
+        <div class="target"><strong>Jelle Portegies</strong><span>B2B tech · ABM · marketing automation</span></div>
+        <div class="target"><strong>Diana Groot</strong><span>Campaigns · funnel · performance</span></div>
+        <div class="target"><strong>Jari Boer</strong><span>Interested · call to schedule</span></div>
+        <div class="target"><strong>Paul Bindels</strong><span>Demand Manager / Team Lead · Dapper</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom">
+    <div class="card">
+      <div class="eyebrow">Monday agenda</div>
+      <h2>Topics to align with Henrique</h2>
+      <ol class="talking">
+        <li>Quick calibration: are Dyantha, Lara and Jari the right type of profiles?</li>
+        <li>Share first outreach response: 23 invites, 9 accepted, 4 replies.</li>
+        <li>Confirm any specific feedback / must-haves before the next sourcing wave.</li>
+        <li>Dyantha screened positively: interested, Dutch confirmed, IC/hybrid fit, immediate availability; last base €85K and open to OTE discussion.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Next steps</div>
+      <h2>Next week</h2>
+      <ul>
+        <li>Introduce Dyantha to Henrique / Webfleet and schedule short calls with Lara and Jari.</li>
+        <li>Move Dyantha forward and continue qualifying interested candidates quickly.</li>
+        <li>Continue LinkedIn follow-up with the current targeted pool.</li>
+        <li>Only add new sourcing where needed after Monday calibration.</li>
+      </ul>
+      <div class="note"><strong>Goal:</strong> not to build volume for the sake of volume, but to quickly identify 2-4 candidates who are genuinely close to the brief.</div>
+<div class="note"><strong>Early market signal:</strong> location is already creating some friction. Kyra is focused on The Hague and Sebastiaan liked the opportunity but declined because he does not want to work in Amsterdam.</div>
+    </div>
+  </section>
+
+  <div class="note" style="margin-top:18px"><strong>Activity log:</strong> market mapping / sourcing, 26 profiles reviewed, LinkedIn outreach campaign setup and launch, outreach follow-up and candidate response handling. Exact hours are tracked separately in the working chat.</div>
+  <div class="footer">Prepared by Does Recruitment · status 7 Sep 2026 · Webfleet-inspired colour palette</div>
+</div>
+</body>
+</html>
